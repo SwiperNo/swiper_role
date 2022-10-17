@@ -1,0 +1,10 @@
+---
+# handlers file for unit
+  - name: reload firewalld
+    systemd:
+      name: firewalld
+      state: reloaded
+
+  - name: reload units
+    systemd:
+      daemon_reload: yes
