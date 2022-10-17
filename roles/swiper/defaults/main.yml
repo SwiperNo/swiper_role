@@ -1,0 +1,6 @@
+---
+# defaults file for unit
+user: "{{ ansible_user_id }}"
+service_description: "A service that runs Swiper"
+swiper_dir: "/home/{{ user }}/swiper/resources/app"
+swiper_node_dir: "/home/{{ user }}/swiper/resources/app/main.js"
