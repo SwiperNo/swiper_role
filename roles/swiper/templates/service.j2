@@ -1,0 +1,14 @@
+[Unit]
+Description={{ service_description }}
+Documentation='https://www.youtube.com/watch?v=PbBQjzJk6s8'
+After=network.target
+
+[Service]
+Enviornment=NODE_PORT=4000
+Type=simple
+User={{ user }}
+ExecStart=/usr/bin/node {{ swiper_dir }}/resources/app/main.js 
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
