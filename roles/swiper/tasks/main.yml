@@ -1,0 +1,31 @@
+---
+# tasks file for unit
+  - name: Create swiper dir at {{ swiper_dir }}
+    file:
+      path: "{{ swiper_dir }}"
+      state: directory
+
+  - name: Open firewall port
+    firewalld:
+      port: 4000/tcp
+      state: enabled
+      immediate: yes
+      permanent: yes
+    notify: reload firewalld
+
+  - name: Deploy NodeJs App
+    template:
+      src: templates/nodejs.j2
+      dest: "{{ swiper_node_dir }}"
+
+  - name: Create Swiper systemd service file
+    template:
+      src: templates/service.j2
+      dest: /lib/systemd/system/swiping.service
+    notify: reload units 
+  
+  - name: Start Swiper service
+    service:
+      name: swiping
+      state: started
+      enabled: yes
