@@ -1,0 +1,13 @@
+---
+  - name: Use swiper role to start swiping
+    hosts: ansible1
+
+    roles:
+      - roles/swiper
+
+    pre_tasks:
+    
+      - name: Install Js node
+        yum:
+          name: nodejs
+          state: latest
